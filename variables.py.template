@@ -1,0 +1,16 @@
+# Please modify the following variables to match your environment
+
+# This is the address of any server in your company's network that you can only access through the VPN
+address_to_ping_company_net = 'intranet.example.com'
+
+# Your Horoquartz username
+hq_username = "MYHOROQUARTZUSER"
+
+# Your Horoquartz password, encrypted with the 'pwgen.py' script
+hq_password = "gAAAAABlSSIKowbS_lv9sKG24euFIVt3NTg0oK5hvA3cO6UxvUk7gNi7GZYOsNZvuRAZhl7zA4XkuU_UtmZ0nFQJi-_WRlhalg=="
+
+# The URL of your Horoquartz server
+hq_url = "http://horoquartz.example.com:1234/webquartz/eQuartz/"
+
+# The name of your company
+company_name = "Cyberdyne Systems"
