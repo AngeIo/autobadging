@@ -132,6 +132,15 @@ def get_reg(name, path):
 ###
 
 def main():
+    # Set DPI Awareness on current process (Properties / Compatibility / Change high DPI settings / Override high DPI scaling behavior. Scaling performed by: System)
+    os.environ.update({"__COMPAT_LAYER": "DpiUnaware"}) # For "System"
+    # os.environ.update({"__COMPAT_LAYER": "HighDpiAware"}) # For "Application"
+    # os.environ.update({"__COMPAT_LAYER": "GdiDpiScaling DpiUnaware"}) # For "System (Enhanced)"
+    # Sources : https://www.reddit.com/r/SCCM/comments/dlwblz/setting_per_application_dpi_settings/
+    # https://stackoverflow.com/questions/37878185/what-does-compat-layer-actually-do
+    # https://superuser.com/questions/1623879/force-scaling-performed-by-application-for-all-apps
+
+    # Get or create the key use for password encryption
     mykey = mykeygen()
 
     i = 0
