@@ -13,10 +13,9 @@ This is a easy-to-use user interface to simply badge on Horoquartz from your Win
 ## Features / To-do list
 - [x] Easy badging without ever needing to open a browser by yourself
 - [x] Creates the shortcuts on your Windows desktop and taskbar
-- [x] If allowed, adds itself to Windows startup process to badge as soon as you log in to your computer
-- [ ] Improve first time setup with password generation etc.
+- [x] Given permission, adds itself to Windows' startup process to badge when you log in to your PC
+- [ ] Easy installation (improve first time setup with password generation etc.)
 - [ ] Support for Linux (only tested on Windows)
-- [ ] Clean the requirements.txt file to contain only the packages needed by the project
 
 ## Screenshot
 
@@ -27,8 +26,8 @@ This is a easy-to-use user interface to simply badge on Horoquartz from your Win
 Please make sure you have the following prerequisites:
 
 - [Git](https://git-scm.com/downloads)
-- [Python 3](https://www.python.org/downloads/)
-- [Microsoft Visual C++](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+- [Python 3](https://www.python.org/downloads/) (tested with 3.10.11)
+- [Google Chrome](https://www.google.com/chrome/) (tested with 119.0.6045.160)
 
 ### Downloading the source code
 
@@ -46,24 +45,36 @@ git pull
 
 ## Usage
 
-Download all the required packages for the script to work:
+### Dependencies
+Download all the required packages for the script by running the following command in your terminal:
+
 ```shell
 pip install -r requirements.txt
 ```
 
-Rename `variables.py.template` to `variables.py` and modify it to match with your environment (see below for password variable).
+### Encryption of your password
+Utilize the dedicated script in the `utils` directory to generate an encrypted version of your *Horoquartz* password. Save the result for later use. Run the following command:
 
-Generate your encrypted password using the dedicated script included with this project and copy-paste the result in `variables.py` file:
 ```shell
-python pwgen.py "MyStrongPassword"
+python utils/pwgen.py "MyStrongPassword"
 ```
 
-Then, launch the compiler:
-```
+### Variables configuration
+You have to:
+
+- Rename `variables.py.template` to `variables.py`.
+- Copy and paste your encrypted password in the `hq_password` variable.
+- Modify all other variables in `variables.py` to match your environment.
+
+### Compile & install
+Run the compiler and installation scripts using the following command:
+
+```shell
 python utils/make.py
 ```
 
-To run the script, click on the `autob` shortcut in your taskbar or on your desktop!
+### Run the Script
+To execute the script, click on the `autob` shortcut in your taskbar or on your desktop!
 
 ## License
 The source code for "autobadging" is using a *???* license (we haven't decided yet).

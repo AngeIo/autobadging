@@ -10,6 +10,7 @@ import subprocess
 import winshell
 import requests
 import ctypes
+import re
 
 program_name = "autob"
 
@@ -18,6 +19,19 @@ parent_dir = os.path.dirname(current_dir)
 
 def parent_dir_file_path(path):
     return os.path.join(parent_dir, path)
+
+def get_reg(name,path):
+    try:
+        registry_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, path, 0,
+                                       winreg.KEY_READ)
+        value, regtype = winreg.QueryValueEx(registry_key, name)
+        winreg.CloseKey(registry_key)
+        return value
+    except WindowsError:
+        return None
+
+def contains_windows_variable(s):
+    return bool(re.search(r'%\w+%', s))
 
 # Remove autob.exe in the current directory
 if os.path.exists(parent_dir_file_path(program_name + '.exe')):
@@ -41,16 +55,6 @@ else:
     print("autob.exe does not exist in the dist folder.")
 
 # --- Shortcut creation to current user desktop ---
-def get_reg(name,path):
-    try:
-        registry_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, path, 0,
-                                       winreg.KEY_READ)
-        value, regtype = winreg.QueryValueEx(registry_key, name)
-        winreg.CloseKey(registry_key)
-        return value
-    except WindowsError:
-        return None
-
 # Target of shortcut
 target = parent_dir_file_path(program_name + '.exe')
 
@@ -59,6 +63,10 @@ linkName = program_name + '.lnk'
 
 # Read location of Windows desktop folder from registry
 desktopFolder = os.path.normpath(get_reg('Desktop', r'Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders'))
+
+# If the desktop folder's path contains a Windows variable (%USERPROFILE%, %APPDATA%, etc.), expand it (for example to C:\Users\agerard or C:\Users\agerard\AppData\Roaming)
+if contains_windows_variable(desktopFolder):
+    desktopFolder = os.path.expandvars(desktopFolder)
 
 # Path to location of link file
 pathLink = os.path.join(desktopFolder, linkName)
