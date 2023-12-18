@@ -26,6 +26,25 @@ program_name = "autob"
 
 MessageBox = ctypes.windll.user32.MessageBoxW
 
+def findnthoccurrence(str, char, n):
+    '''
+    Extract the position in string of a specified character (the nth occurrence)
+    '''
+    count = str.count(char)
+    if count < n:
+        return -1
+    index = -1
+    for i in range(n):
+        index = str.index(char, index + 1)
+    return index
+
+def extractpathurl(str):
+    '''
+    If str = https://bonjour.com/weuhriu/ewrweurh/rtyrtu
+    Returns = /weuhriu/ewrweurh/rtyrtu
+    '''
+    return str[findnthoccurrence(str, '/', 3):]
+
 def quitandclose():
     sys.exit(0)
  
@@ -213,7 +232,10 @@ def main():
     # If error, then:
     except Exception as e:
         # There were no login errors
-        myPopupShowError("Error accessing the 'Self service' button!\nThe website could be unavailable.\nPlease try again.")
+        if "login" in extractpathurl(driver.current_url):
+            myPopupShowError("Error while logging in!\nThe configured password may be incorrect.\nPlease try again.")
+        else:
+            myPopupShowError("Error accessing the 'Self service' button!\nThe website could be unavailable.\nPlease try again.")
         return
 
     # Fixes a bug that prevented a button from being clicked when a "Processing in progress, please wait..." loading screen was displayed. Fails automatically after 100 attempts.
