@@ -1,10 +1,8 @@
-
-
 <p align="center">
   <img width="250" alt="autobadging logo" src="assets/logo.png">
 </p>
 
-# autobadging
+# autoBadging
 
 User interface to help with badging on *Horoquartz - eTemptation* at C+T
 
@@ -59,6 +57,12 @@ Utilize the dedicated script in the `utils` directory to generate an encrypted v
 python utils/pwgen.py "MyStrongPassword"
 ```
 
+Or type the same command without the password at the end to type it hidden:
+
+```shell
+python utils/pwgen.py
+```
+
 ### Variables configuration
 You have to:
 
@@ -82,5 +86,5 @@ The source code for "autobadging" is using a *???* license (we haven't decided y
 ## Authors
 * 0x546F6D (creator of pttb)
 * A lot of open source contributors
-* GERARD Angelo
+* Angelo
 
