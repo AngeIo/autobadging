@@ -101,6 +101,7 @@ icon = parent_dir_file_path('assets/icon.ico')
 shell = Dispatch('WScript.Shell')
 shortcut = shell.CreateShortcut(pathLink)
 shortcut.TargetPath = target
+shortcut.WorkingDirectory = parent_dir
 shortcut.IconLocation = icon
 shortcut.save()
 
@@ -144,6 +145,7 @@ if answer == 6 or flag_autostart == True:
     icon = parent_dir_file_path('assets/icon.ico')
     shortcut_startup = shell.CreateShortcut(startup_pathLink)
     shortcut_startup.TargetPath = target
+    shortcut_startup.WorkingDirectory = parent_dir
     shortcut_startup.IconLocation = icon
     shortcut_startup.save()
     if answer == 6:
