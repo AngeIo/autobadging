@@ -13,7 +13,7 @@ This is a easy-to-use user interface to simply badge on Horoquartz from your Win
 - [x] Creates the shortcuts on your Windows desktop and taskbar
 - [x] Given permission, adds itself to Windows' startup process to badge when you log in to your PC
 - [ ] Easy installation (improve first time setup with password generation etc.)
-- [ ] Support for Linux (only tested on Windows)
+- [ ] Support for Linux and macOS (only tested on Windows)
 
 ## Screenshot
 
