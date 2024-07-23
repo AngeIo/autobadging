@@ -80,8 +80,8 @@ python utils/make.py
 ### Run the Script
 To execute the script, click on the `autob` shortcut in your taskbar or on your desktop!
 
-## License
-The source code for "autobadging" is using a *???* license (we haven't decided yet).
+## Contribution
+Feel free to contribute, I am open to suggestions and PRs :)
 
 ## Authors
 * 0x546F6D (creator of pttb)
