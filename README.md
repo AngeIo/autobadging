@@ -25,7 +25,7 @@ Please make sure you have the following prerequisites:
 
 - [Git](https://git-scm.com/downloads)
 - [Python 3](https://www.python.org/downloads/) (tested with 3.10.11)
-- [Google Chrome](https://www.google.com/chrome/) (tested with 119.0.6045.160)
+- [Google Chrome](https://www.google.com/chrome/) (tested with 126.0.6478.183)
 
 ### Downloading the source code
 
