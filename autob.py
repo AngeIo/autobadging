@@ -19,6 +19,13 @@ from win32com.client import Dispatch
 from subprocess import CREATE_NO_WINDOW # This flag will only be available in windows
 import ctypes
 
+# Checking if executed from compiled ("frozen") exe or from a py file and adds current working directory to path so variables can be dynamically imported when running exe file
+if getattr(sys, 'frozen', False):
+    app_path = os.path.dirname(sys.executable)
+    sys.path.append(app_path)
+else:
+    app_path = os.path.dirname(os.path.abspath(__file__))
+
 # Import from external variables file
 import variables
 
@@ -111,7 +118,7 @@ def decrypt(token: bytes, key: bytes) -> bytes:
     try:
         result = Fernet(key).decrypt(token)
     except Exception as e:
-        print("ERROR: Looks like the key linked to your password has changed, please regenerate your password's hash with the new key and paste the result in \"variables.py\".")
+        myPopupShowError("Looks like the key linked to your password has changed, please regenerate your password's hash with the new key and paste the result in \"variables.py\".")
         sys.exit(1)
     return result
 

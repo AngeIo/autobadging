@@ -11,6 +11,9 @@ import requests
 import ctypes
 import re
 
+# Choose if building ("BD") or downloading ("DL") exe (recommended to choose "DL" by default)
+FLAG = "DL"
+
 program_name = "autob"
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
@@ -36,8 +39,33 @@ def contains_windows_variable(s):
 if os.path.exists(parent_dir_file_path(program_name + '.exe')):
     os.remove(parent_dir_file_path(program_name + '.exe'))
 
-# Add your pyinstaller command here
-os.system('pyinstaller --onefile --noconsole --icon "' + parent_dir_file_path('assets/icon.ico') + '" "' + parent_dir_file_path(program_name + '.py') + '"')
+# --- Build or download autob.exe ---
+# If build mode
+if FLAG == "BD":
+    # Modules to exclude from the exe file
+    excluded_modules = [
+        'variables'
+    ]
+
+    append_string_excluded_modules = ''
+    for mod in excluded_modules:
+        append_string_excluded_modules += f' --exclude-module {mod}'
+
+    # Add your pyinstaller command here with all the exclude module parameters
+    os.system('pyinstaller --onefile --noconsole --icon "' + parent_dir_file_path('assets/icon.ico') + '" "' + parent_dir_file_path(program_name + '.py') + '"' + append_string_excluded_modules)
+# If download mode
+elif FLAG == "DL":
+    # The program is not installed, download it
+    url = 'https://github.com/AngeIo/autobadging/releases/latest/download/autob.exe'
+    response = requests.get(url, allow_redirects=True)
+
+    # Save the program to the current directory
+    with open(program_name + '.exe', 'wb') as f:
+        f.write(response.content)
+
+    print(f"{program_name + '.exe'} downloaded.")
+else:
+    print("Error: Unknown mode")
 
 # Check if autob.exe exists in the dist folder
 if os.path.exists(parent_dir_file_path('dist/' + program_name + '.exe')):
