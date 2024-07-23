@@ -4,7 +4,7 @@
 
 # autoBadging
 
-User interface to help with badging on *Horoquartz - eTemptation* at C+T
+User interface to help with badging on *Horoquartz - eTemptation*
 
 This is a easy-to-use user interface to simply badge on Horoquartz from your Windows desktop, without ever having to open the website! It could be added to your Windows startup process so it opens automatically when you log in on your PC and you don't even have to think about it!
 
