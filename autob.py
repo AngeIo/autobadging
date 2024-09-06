@@ -19,6 +19,9 @@ from win32com.client import Dispatch
 from subprocess import CREATE_NO_WINDOW # This flag will only be available in windows
 import ctypes
 
+DEBUG = False
+# DEBUG = True
+
 # Checking if executed from compiled ("frozen") exe or from a py file and adds current working directory to path so variables can be dynamically imported when running exe file
 if getattr(sys, 'frozen', False):
     app_path = os.path.dirname(sys.executable)
@@ -75,7 +78,8 @@ def ping(host):
                 return False
     # If error, then:
     except Exception as e:
-        print("Error:", e)
+        if DEBUG:
+            print("Error:", e)
         return False
 
     # If ping Linux OK, return True
