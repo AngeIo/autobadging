@@ -75,6 +75,7 @@ def ping(host):
                 return False
     # If error, then:
     except Exception as e:
+        print("Error:", e)
         return False
 
     # If ping Linux OK, return True
